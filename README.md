@@ -5,7 +5,7 @@
 ### TFE – Formation Front-End Developer IFAPME
 
 **Étudiant : Loïc**  
-**Technologies : React – Vite – TypeScript**
+**Technologies : React – Vite**
 
 ---
 
@@ -34,7 +34,7 @@ Développer une application web 100% client-side permettant la création et le p
 - Garantir une conformité RGPD stricte
 - Assurer une excellente expérience utilisateur mobile
 - Optimiser les performances (compression et gestion mémoire)
-- Développer une architecture React moderne, maintenable et typée
+- Développer une architecture React moderne, maintenable
 - Déployer une Progressive Web App (PWA)
 
 ---
@@ -74,10 +74,9 @@ L’application devra permettre à un utilisateur :
 2. De capturer des images via caméra
 3. De visualiser les images en miniature
 4. De réorganiser leur ordre
-5. De les modifier (rotation)
-6. De générer un PDF
-7. De partager ou télécharger le PDF
-8. De supprimer les images
+5. De générer un PDF
+6. De partager ou télécharger le PDF
+7. De supprimer les images
 
 ---
 
@@ -116,13 +115,6 @@ L’application devra permettre à un utilisateur :
 - Drag & Drop (dnd-kit)
 - Compatible mobile
 - Mise à jour dynamique
-
----
-
-### 🔄 Rotation image
-
-- Rotation 90° droite/gauche
-- Mise à jour preview
 
 ---
 
@@ -196,13 +188,6 @@ L’application devra permettre à un utilisateur :
 
 ---
 
-### 🕒 Nettoyage automatique
-
-- Suppression si inactivité > X minutes
-- Avertissement avant purge
-
----
-
 ## 5.3 COULD HAVE (Amélioration)
 
 - Mode sombre
@@ -231,7 +216,6 @@ L’application devra permettre à un utilisateur :
 
 - React 18
 - Vite
-- TypeScript
 - Tailwind CSS
 - dnd-kit
 - react-dropzone
@@ -344,7 +328,6 @@ Les images peuvent contenir des données sensibles.
 ## 12.1 Tests fonctionnels
 
 - Upload multiple
-- Rotation
 - Réorganisation
 - Export correct
 - Share mobile
@@ -386,28 +369,6 @@ Les images peuvent contenir des données sensibles.
 - Documentation technique
 - Rapport TFE complet
 - Cahier des charges
-- Manuel utilisateur
-
----
-
-# 15. Critères d’Acceptation
-
-- PDF correct (1 image/page)
-- Aucun stockage persistant
-- Fonctionne mobile
-- Partage opérationnel
-- Interface accessible
-- Performance acceptable
-
----
-
-# 16. Indicateurs de Réussite
-
-- Respect RGPD
-- Fluidité UX
-- Stabilité
-- Code maintenable
-- Architecture claire
 
 ---
 
