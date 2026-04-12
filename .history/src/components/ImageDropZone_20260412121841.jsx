@@ -1,8 +1,7 @@
 import {useImages} from '../context/imageContext.jsx'
-import { nanoid } from 'nanoid'
 
 export default function ImageDropZone() {
-    const { setImages } = useImages();
+    const { images, setImages } = useImages();
 
     function handleFileSelect(event) {
         const files = event.target.files

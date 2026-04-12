@@ -2,7 +2,7 @@ import {useImages} from '../context/imageContext.jsx'
 import { nanoid } from 'nanoid'
 
 export default function ImageDropZone() {
-    const { setImages } = useImages();
+    const { images, setImages } = useImages();
 
     function handleFileSelect(event) {
         const files = event.target.files
@@ -12,6 +12,7 @@ export default function ImageDropZone() {
             preview: URL.createObjectURL(file) // Create a preview URL for the image
         }))
         setImages(prevImages => [...prevImages, ...newImages])
+        console.log(images)
     }
   return (
     <section>
