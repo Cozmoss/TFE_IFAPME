@@ -7,7 +7,7 @@ import ImageProvider from './context/imageContext.jsx'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ImageProvider>
-        <App />
-    </ImageProvider>
+    <App />
+    
   </StrictMode>,
 )
