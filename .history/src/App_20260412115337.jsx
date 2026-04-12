@@ -1,3 +1,4 @@
+import './App.css'
 import Header from './components/Header.jsx'
 import ImageDropZone from './components/ImageDropZone.jsx'
 import ImageList from './components/ImageList.jsx'
@@ -8,13 +9,6 @@ function App() {
 
   return (
 		<>
-            <Header />
-            <main>
-                <ImageDropZone />
-                <ImageList />
-                <ActionBar />
-            </main>
-            <Footer />
 		</>
   );
 }
