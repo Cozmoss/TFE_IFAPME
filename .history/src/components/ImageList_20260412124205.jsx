@@ -10,9 +10,7 @@ export default function ImageList() {
     return (bytes / 1024).toFixed(1) + ' KB';
  }
 
- function handleRemoveImage(id) {
-    setImages(prevImages => prevImages.filter(image => image.id !== id))
- }
+ function handleRemoveImage(id)
 
   return (
     <div>
@@ -22,7 +20,7 @@ export default function ImageList() {
                     <img src={image.preview} alt={image.file.name} width="100" height="100" />
                     <p>{image.file.name}</p>
                     <p>{formatFileSize(image.file.size)}</p>
-                    <button onClick={() => handleRemoveImage(image.id)}>Remove</button>
+                    <button >Remove</button>
                 </li>
             ))}
         </ul>

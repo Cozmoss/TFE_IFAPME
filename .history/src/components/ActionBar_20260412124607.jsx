@@ -4,9 +4,8 @@ export default function ActionBar() {
     const { setImages } = useImages();
 
     function handleRemoveAll() {
-        if (window.confirm('Are you sure you want to delete all images?')) {
-            setImages([])
-        }
+
+        setImages([])
     }
     return (
         <div>

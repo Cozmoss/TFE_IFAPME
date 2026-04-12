@@ -11,7 +11,7 @@ export default function ImageList() {
  }
 
  function handleRemoveImage(id) {
-    setImages(prevImages => prevImages.filter(image => image.id !== id))
+    setImages(prevImages => prevImages.filter(image => image.id !))
  }
 
   return (

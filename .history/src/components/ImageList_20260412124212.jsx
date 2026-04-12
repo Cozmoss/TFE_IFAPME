@@ -10,9 +10,7 @@ export default function ImageList() {
     return (bytes / 1024).toFixed(1) + ' KB';
  }
 
- function handleRemoveImage(id) {
-    setImages(prevImages => prevImages.filter(image => image.id !== id))
- }
+ function handleRemoveImage(id) 
 
   return (
     <div>
