@@ -3,7 +3,7 @@ import { useImages } from '../context/imageContext.jsx'
 export default function ImageList() {
   const { images } = useImages();
 
- function formatFileSize(bytes) {
+ function formatFileSize(size) {
     if (bytes >= 1048576) {
         return (bytes / 1048576).toFixed(1) + ' MB';
     }
