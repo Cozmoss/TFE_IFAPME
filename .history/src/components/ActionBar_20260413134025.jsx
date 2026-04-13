@@ -10,7 +10,7 @@ export default function ActionBar() {
     }
     return (
         <div>
-            <button onClick={handleRemoveAll} className="cursor-pointer">Delete all</button>
+            <button onClick={handleRemoveAll} className="button cursor-">Delete all</button>
         </div>
     )
 }

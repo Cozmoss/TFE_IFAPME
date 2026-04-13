@@ -13,19 +13,12 @@ export default function ImageDropZone() {
         setImages((prevImages) => [...prevImages, ...newImages]);
     }
 
-    function onDrop (event) {
-        event.preventDefault();
-        const files = event.dataTransfer.files;
-        processFiles(files);
-    }
- 
     function handleFileSelect(event) {
         const files = event.target.files
         processFiles(files);
     }
-    
   return (
-    <section onDragOver={(e) => e.preventDefault()} onDrop={onDrop} className="border-2 border-dashed border-gray-400 p-4 text-center">
+    <section onDragOver={onDragOver} onDrop={OnDrop} onDragOver={(e) => e.preventDefault()} onDropCapture={(e) => e.preventDefault()} className="border-2 border-dashed border-gray-400 p-4 text-center">
         <input type="file" id="imagesList" name="imagesList" accept="image/png, image/jpeg, image/webp" multiple onChange={handleFileSelect} />
     </section>
   )

@@ -10,22 +10,19 @@ export default function ImageDropZone() {
 			file: file, // Store the original file object
 			preview: URL.createObjectURL(file), // Create a preview URL for the image
 		}));
-        setImages((prevImages) => [...prevImages, ...newImages]);
     }
 
-    function onDrop (event) {
-        event.preventDefault();
-        const files = event.dataTransfer.files;
-        processFiles(files);
-    }
- 
     function handleFileSelect(event) {
         const files = event.target.files
-        processFiles(files);
+        const newImages = Array.from(files).map(file => ({
+            id: nanoid(), // Generate a unique ID for each image
+            file: file, // Store the original file object
+            preview: URL.createObjectURL(file) // Create a preview URL for the image
+        }))
+        
     }
-    
   return (
-    <section onDragOver={(e) => e.preventDefault()} onDrop={onDrop} className="border-2 border-dashed border-gray-400 p-4 text-center">
+    <section>
         <input type="file" id="imagesList" name="imagesList" accept="image/png, image/jpeg, image/webp" multiple onChange={handleFileSelect} />
     </section>
   )
