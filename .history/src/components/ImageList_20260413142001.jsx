@@ -1,4 +1,5 @@
 import { useImages } from '../context/imageContext.jsx'
+import {formatFileSize} from '../utils/formatFileSize.js'
 import { DndContext, closestCenter } from '@dnd-kit/core'
 import { SortableContext, arrayMove } from '@dnd-kit/sortable'
 import SortableImageItem from './SortableImageItem.jsx'
@@ -16,8 +17,7 @@ export default function ImageList() {
     if (active.id !== over.id) {
         setImages((prevImages) => {
             const oldIndex = prevImages.findIndex(img => img.id === active.id)
-            const newIndex = prevImages.findIndex(img => img.id === over.id)
-            return arrayMove(prevImages, oldIndex, newIndex)
+            const newIndex = prevImages.findIndex()
         })
     }
  }
@@ -25,13 +25,9 @@ export default function ImageList() {
   return (
     <div>
         <ul>
-            <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-                <SortableContext items={images.map(image => image.id)}>
-                    {images.map(image => (
-                        <SortableImageItem key={image.id} image={image} onRemove={() => handleRemoveImage(image.id)} />
-                    ))}
-                </SortableContext>
-            </DndContext>
+            {images.length === 0 ? <li>No images available</li> : images.map(image => (
+                
+            ))}
         </ul>
     </div>
   )

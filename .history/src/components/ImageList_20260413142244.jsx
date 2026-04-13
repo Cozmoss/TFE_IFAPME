@@ -1,4 +1,5 @@
 import { useImages } from '../context/imageContext.jsx'
+import {formatFileSize} from '../utils/formatFileSize.js'
 import { DndContext, closestCenter } from '@dnd-kit/core'
 import { SortableContext, arrayMove } from '@dnd-kit/sortable'
 import SortableImageItem from './SortableImageItem.jsx'
@@ -27,9 +28,7 @@ export default function ImageList() {
         <ul>
             <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
                 <SortableContext items={images.map(image => image.id)}>
-                    {images.map(image => (
-                        <SortableImageItem key={image.id} image={image} onRemove={() => handleRemoveImage(image.id)} />
-                    ))}
+                    {images.map}
                 </SortableContext>
             </DndContext>
         </ul>

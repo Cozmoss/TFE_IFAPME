@@ -1,4 +1,5 @@
 import { useImages } from '../context/imageContext.jsx'
+import {formatFileSize} from '../utils/formatFileSize.js'
 import { DndContext, closestCenter } from '@dnd-kit/core'
 import { SortableContext, arrayMove } from '@dnd-kit/sortable'
 import SortableImageItem from './SortableImageItem.jsx'
