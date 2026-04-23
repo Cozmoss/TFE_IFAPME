@@ -4,38 +4,10 @@ function loadImageFromFile(file) {
     return new Promise((resolve, reject) => {
         const url = URL.createObjectURL(file)
         const image = new Image()
-        image.onload = () => {
+        img.onload = () => {
             URL.revokeObjectURL(url)
-            resolve(image)
         }
-        image.onerror = () => {
-            URL.revokeObjectURL(url)
-            reject(new Error('Failed to load WEBP image'))
-        }
-        image.src = url
     })
-}
-
-async function convertWebpToPng(file) {
-    const img = await loadImageFromFile(file)
-    const canvas = document.createElement('canvas')
-    canvas.width = img.naturalWidth
-    canvas.height = img.naturalHeight
-    const ctx = canvas.getContext('2d')
-    if (!ctx) {
-        throw new Error('Canvas 2D unavailable')
-    }
-    ctx.drawImage(img, 0, 0)
-    const pngBlob = await new Promise((resolve, reject) => {
-        canvas.toBlob(blob => {
-            if (blob) {
-                resolve(blob)
-            } else {
-                reject(new Error('Failed to convert WEBP to PNG'))
-            }
-        }, 'image/png', 1)
-    })
-    return await pngBlob.arrayBuffer()
 }
 
 export async function generatePDF(images) {
@@ -48,11 +20,6 @@ export async function generatePDF(images) {
             pdfImage = await pdfDoc.embedJpg(arrayBuffer);
         } else if (image.file.type === 'image/png') {
             pdfImage = await pdfDoc.embedPng(arrayBuffer);
-        } else if (image.file.type === 'image/webp') {
-            const pngBuffer = await convertWebpToPng(image.file)
-            pdfImage = await pdfDoc.embedPng(pngBuffer);
-        } else {
-            continue
         }
 
         const page = pdfDoc.addPage([595.28, 841.89]) // A4 size in points

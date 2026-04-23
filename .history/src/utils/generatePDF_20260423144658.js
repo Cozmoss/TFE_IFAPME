@@ -50,9 +50,7 @@ export async function generatePDF(images) {
             pdfImage = await pdfDoc.embedPng(arrayBuffer);
         } else if (image.file.type === 'image/webp') {
             const pngBuffer = await convertWebpToPng(image.file)
-            pdfImage = await pdfDoc.embedPng(pngBuffer);
-        } else {
-            continue
+            pdfImage = await pdfDoc.
         }
 
         const page = pdfDoc.addPage([595.28, 841.89]) // A4 size in points

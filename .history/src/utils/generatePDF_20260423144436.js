@@ -35,7 +35,7 @@ async function convertWebpToPng(file) {
             }
         }, 'image/png', 1)
     })
-    return await pngBlob.arrayBuffer()
+    return
 }
 
 export async function generatePDF(images) {
@@ -48,11 +48,6 @@ export async function generatePDF(images) {
             pdfImage = await pdfDoc.embedJpg(arrayBuffer);
         } else if (image.file.type === 'image/png') {
             pdfImage = await pdfDoc.embedPng(arrayBuffer);
-        } else if (image.file.type === 'image/webp') {
-            const pngBuffer = await convertWebpToPng(image.file)
-            pdfImage = await pdfDoc.embedPng(pngBuffer);
-        } else {
-            continue
         }
 
         const page = pdfDoc.addPage([595.28, 841.89]) // A4 size in points
