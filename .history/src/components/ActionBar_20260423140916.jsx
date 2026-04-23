@@ -1,5 +1,5 @@
 import { useImages } from '../context/imageContext.jsx'
-import { generatePDF } from '../utils/generatePDF.js'
+import generatePDF from '../utils/generatePDF.js'
 
 
 export default function ActionBar() {

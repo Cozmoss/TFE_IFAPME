@@ -1,5 +1,5 @@
 import { useImages } from '../context/imageContext.jsx'
-import { generatePDF } from '../utils/generatePDF.js'
+import generatePDF from '../utils/generatePDF.js'
 
 
 export default function ActionBar() {
@@ -14,7 +14,7 @@ export default function ActionBar() {
         link.click()
         URL.revokeObjectURL(url)
     }
-    const { images, setImages } = useImages();
+    const { setImages } = useImages();
 
     function handleRemoveAll() {
         if (window.confirm('Are you sure you want to delete all images?')) {
@@ -24,7 +24,7 @@ export default function ActionBar() {
     return (
         <div>
             <button onClick={handleRemoveAll} className="cursor-pointer">Delete all</button>
-            <button onClick={() => handleGeneratePDF(images)} className="cursor-pointer">Generate PDF</button>
+            <button onClick={handleGeneratePDF} className="cursor-pointer">Generate PDF</button>
         </div>
     )
 }
