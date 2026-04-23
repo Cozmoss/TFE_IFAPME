@@ -25,9 +25,6 @@ export default function ActionBar() {
             URL.revokeObjectURL(url)
         } catch (error) {
             console.error(error);
-            alert('Failed to generate PDF')
-        } finally {
-            setIsGenerating(false)
         }
     }
 
@@ -39,9 +36,7 @@ export default function ActionBar() {
     return (
         <div>
             <button onClick={handleRemoveAll} className="cursor-pointer">Delete all</button>
-            <button onClick={handleGeneratePDF} className="cursor-pointer" disabled={isGenerating || images.length === 0}>
-                {isGenerating ? 'Generating...' : 'Generate PDF'}
-            </button>
+            <button onClick={handleGeneratePDF} className="cursor-pointer">Generate PDF</button>
         </div>
     )
 }
