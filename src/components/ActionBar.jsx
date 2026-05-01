@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useImages } from '../context/imageContext.jsx'
 import { generatePDF } from '../utils/generatePDF.js'
+import { downloadPDF } from '../utils/downloadPDF.js'
 
 
 export default function ActionBar() {
@@ -15,15 +16,9 @@ export default function ActionBar() {
         }
         try {
             setIsGenerating(true)
-            const pdfBytes = await generatePDF(images)
-            const blob = new Blob([pdfBytes], { type: 'application/pdf' })
-            const url = URL.createObjectURL(blob)
             const date = new Date().toISOString().slice(0, 10)
-            const link = document.createElement('a')
-            link.href = url
-            link.download = `pixmerge_${date}.pdf`
-            link.click()
-            URL.revokeObjectURL(url)
+            const pdfBytes = await generatePDF(images)
+            downloadPDF(pdfBytes, date)
         } catch (error) {
             console.error(error);
             alert('Failed to generate PDF')
@@ -45,13 +40,7 @@ export default function ActionBar() {
             if (navigator.canShare &&navigator.canShare({ files: [file] })) {
                 await navigator.share({title: 'PixMerge PDF', files: [file]})
             } else {
-                const blob = new Blob([pdfBytes], { type: "application/pdf" });
-				const url = URL.createObjectURL(blob);
-				const link = document.createElement("a");
-				link.href = url;
-				link.download = `pixmerge_${date}.pdf`;
-				link.click();
-				URL.revokeObjectURL(url);
+                downloadPDF(pdfBytes, date);
             }
         } catch (error) {
             console.error(error);
