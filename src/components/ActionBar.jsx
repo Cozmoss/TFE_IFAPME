@@ -6,6 +6,7 @@ import { generatePDF } from '../utils/generatePDF.js'
 export default function ActionBar() {
     const { images, setImages } = useImages();
     const [isGenerating, setIsGenerating] = useState(false)
+    const [isSharing, setIsSharing] = useState(false)
 
     async function handleGeneratePDF() {
         if (images.length === 0) {
@@ -31,6 +32,37 @@ export default function ActionBar() {
         }
     }
 
+    async function handleShare() {
+        if (images.length === 0) {
+            alert('No images to share')
+            return
+        }
+        try {
+            setIsSharing(true)
+            const pdfBytes = await generatePDF(images)
+            const date = new Date().toISOString().slice(0, 10)
+            const file = new File([pdfBytes], `pixmerge_${date}.pdf`, { type: 'application/pdf' })
+            if (navigator.canShare &&navigator.canShare({ files: [file] })) {
+                await navigator.share({title: 'PixMerge PDF', files: [file]})
+            } else {
+                const blob = new Blob([pdfBytes], { type: "application/pdf" });
+				const url = URL.createObjectURL(blob);
+				const link = document.createElement("a");
+				link.href = url;
+				link.download = `pixmerge_${date}.pdf`;
+				link.click();
+				URL.revokeObjectURL(url);
+            }
+        } catch (error) {
+            console.error(error);
+            alert('Failed to share PDF')
+        } finally {
+            setIsSharing(false)
+        }
+
+
+    }
+
     function handleRemoveAll() {
         if (window.confirm('Are you sure you want to delete all images?')) {
             setImages([])
@@ -41,6 +73,9 @@ export default function ActionBar() {
             <button onClick={handleRemoveAll} className="cursor-pointer">Delete all</button>
             <button onClick={handleGeneratePDF} className="cursor-pointer" disabled={isGenerating || images.length === 0}>
                 {isGenerating ? 'Generating...' : 'Generate PDF'}
+            </button>
+            <button onClick={handleShare} className="cursor-pointer" disabled={isSharing || images.length === 0}>
+                {isSharing ? 'Sharing...' : 'Share PDF'}
             </button>
         </div>
     )
