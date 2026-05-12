@@ -3,17 +3,14 @@ import { nanoid } from 'nanoid'
 import { useState, useRef } from 'react';
 import CameraModal from './CameraModal.jsx';
 import imageCompression from 'browser-image-compression';
+import { COMPRESSION_OPTIONS } from '../utils/compressionOptions.js';
 
 export default function ImageDropZone() {
     const { setImages } = useImages();
     const [isCameraOpen, setIsCameraOpen] = useState(false);
     const inputRef = useRef(null);
 
-    const options = {
-		maxSizeMB: 1,
-		maxWidthOrHeight: 1920,
-		useWebWorker: true,
-	};
+    const options = COMPRESSION_OPTIONS;
 
     async function processFiles (files) {
         const newImages = await Promise.all(

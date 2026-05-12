@@ -3,6 +3,7 @@ import { useCamera } from '../hooks/useCamera.js'
 import { useImages } from '../context/imageContext.jsx'
 import { nanoid } from 'nanoid'
 import imageCompression from 'browser-image-compression';
+import { COMPRESSION_OPTIONS } from '../utils/compressionOptions.js';
 
 
 export default function CameraModal({isOpen, onClose}) {
@@ -19,10 +20,12 @@ export default function CameraModal({isOpen, onClose}) {
 
     async function handleCapture() {
         const file = await capturePhoto()
+        const compressedFile = await imageCompression(file, COMPRESSION_OPTIONS);
         setImages(prevImages => [...prevImages, {
             id: nanoid(),
             file: file,
-            preview: URL.createObjectURL(file)
+            compressed: compressedFile,
+            preview: URL.createObjectURL(compressedFile)
         }])
         onClose()
     }
