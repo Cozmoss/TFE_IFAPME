@@ -42,14 +42,15 @@ export async function generatePDF(images) {
     const pdfDoc = await PDFDocument.create()
 
     for (const image of images) {
-        const arrayBuffer = await image.file.arrayBuffer()
+        const fileToUse = image.compressed ?? image.file
+        const arrayBuffer = await fileToUse.arrayBuffer()
         let pdfImage
-        if (image.file.type === 'image/jpeg') {
+        if (fileToUse.type === 'image/jpeg') {
             pdfImage = await pdfDoc.embedJpg(arrayBuffer);
-        } else if (image.file.type === 'image/png') {
+        } else if (fileToUse.type === 'image/png') {
             pdfImage = await pdfDoc.embedPng(arrayBuffer);
-        } else if (image.file.type === 'image/webp') {
-            const pngBuffer = await convertWebpToPng(image.file)
+        } else if (fileToUse.type === 'image/webp') {
+            const pngBuffer = await convertWebpToPng(fileToUse)
             pdfImage = await pdfDoc.embedPng(pngBuffer);
         } else {
             continue

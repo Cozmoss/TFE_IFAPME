@@ -2,18 +2,31 @@ import {useImages} from '../context/imageContext.jsx'
 import { nanoid } from 'nanoid'
 import { useState, useRef } from 'react';
 import CameraModal from './CameraModal.jsx';
+import imageCompression from 'browser-image-compression';
 
 export default function ImageDropZone() {
     const { setImages } = useImages();
     const [isCameraOpen, setIsCameraOpen] = useState(false);
     const inputRef = useRef(null);
 
-    function processFiles (files) {
-        const newImages = Array.from(files).map((file) => ({
-			id: nanoid(), // Generate a unique ID for each image
-			file: file, // Store the original file object
-			preview: URL.createObjectURL(file), // Create a preview URL for the image
-		}));
+    const options = {
+		maxSizeMB: 1,
+		maxWidthOrHeight: 1920,
+		useWebWorker: true,
+	};
+
+    async function processFiles (files) {
+        const newImages = await Promise.all(
+            Array.from(files).map(async (file) => {
+                const compressedFile = await imageCompression(file, options);
+                return {
+                    id: nanoid(),
+                    file: file, // Store the original file object
+                    compressed: compressedFile, // Store the compressed file object
+                    preview: URL.createObjectURL(compressedFile), // Create a preview URL for the image
+                };
+            })
+        );
         setImages((prevImages) => [...prevImages, ...newImages]);
     }
 
