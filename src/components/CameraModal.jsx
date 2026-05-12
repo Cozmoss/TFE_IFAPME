@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useCamera } from '../hooks/useCamera.js'
 import { useImages } from '../context/imageContext.jsx'
 import { nanoid } from 'nanoid'
+import imageCompression from 'browser-image-compression';
 
 
 export default function CameraModal({isOpen, onClose}) {
