@@ -5,6 +5,7 @@ import CameraModal from './CameraModal.jsx';
 import imageCompression from 'browser-image-compression';
 import { COMPRESSION_OPTIONS } from '../utils/compressionOptions.js';
 import {Upload, Camera, ImagePlus  } from 'lucide-react';
+import Button from './ui/button.jsx';
 
 export default function ImageDropZone() {
     const { setImages } = useImages();
@@ -47,7 +48,7 @@ export default function ImageDropZone() {
 			}}
 			onDragEnter={() => setIsDragging(true)}
 			onDragLeave={() => setIsDragging(false)}
-			className={`flex flex-col items-center border-2 border-dashed px-6 py-8 text-center rounded-xl ${isDragging ? "border-(--primary) bg-(--secondary)" : "border-(--border)"} transition-colors hover:border-(--primary)/40 hover:bg-(--primary)/3`}>
+			className={`flex flex-col items-center bg-(--card) border-2 border-dashed px-6 py-8 text-center rounded-xl ${isDragging ? "border-(--primary) bg-(--secondary)" : "border-(--border)"} transition-colors hover:border-(--primary)/40 hover:bg-(--primary)/3`}>
 			<div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-(--primary)/10">
 				<ImagePlus className="h-7 w-7 text-(--primary)" />
 			</div>
@@ -55,11 +56,11 @@ export default function ImageDropZone() {
 				Glissez et déposez vos images ici
 			</p>
 			<div className="flex gap-2">
-				<button
+				<Button
 					onClick={() => inputRef.current.click()}
-					className="cursor-pointer">
-					Parcourir
-				</button>
+					variant="outline">
+                    <Upload className="h-4 w-4" /> Parcourir
+                </Button>
 				<input
 					ref={inputRef}
 					type="file"
@@ -70,11 +71,11 @@ export default function ImageDropZone() {
 					style={{ display: "none" }}
 					onChange={handleFileSelect}
 				/>
-				<button
+				<Button
 					onClick={() => setIsCameraOpen(true)}
-					className="cursor-pointer">
-					Capturer
-				</button>
+                    variant='outline'>
+                    <Camera className="h-4 w-4" /> Capturer
+                </Button>
 				{isCameraOpen && (
 					<CameraModal
 						isOpen={isCameraOpen}
