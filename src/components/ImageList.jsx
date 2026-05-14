@@ -36,12 +36,12 @@ export default function ImageList() {
 				<div className="flex gap-1 bg-(--surface) border border-(--border) rounded-lg p-0.5">
 					<button
 						onClick={() => setViewMode("list")}
-						className={`p-1.5 cursor-pointer rounded ${viewMode === "list" ? "bg-(--secondary) text-(--primary)" : "text-(--muted-foreground)"}`}>
+						className={`p-1.5 cursor-pointer rounded hover:text-(--foreground) ${viewMode === "list" ? "bg-(--secondary) text-(--primary) hover:text-(--primary)/80" : "text-(--muted-foreground)"}`}>
 						<LayoutList className="h-4 w-4" />
 					</button>
 					<button
 						onClick={() => setViewMode("grid")}
-						className={`p-1.5 cursor-pointer rounded ${viewMode === "grid" ? "bg-(--secondary) text-(--primary)" : "text-(--muted-foreground)"}`}>
+						className={`p-1.5 cursor-pointer rounded hover:text-(--foreground) ${viewMode === "grid" ? "bg-(--secondary) text-(--primary) hover:text-(--primary)/80" : "text-(--muted-foreground)"}`}>
 						<LayoutGrid className="h-4 w-4" />
 					</button>
 				</div>
