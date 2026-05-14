@@ -78,7 +78,7 @@ export default function ActionBar() {
 				<div className="flex items-center justify-between text-base">
 					<span className="text-(--muted-foreground)">Page PDF</span>
 					<span className="font-medium text-(--foreground)">
-						{images.length === 0 ? '—' : images.length}
+						{images.length === 0 ? "—" : images.length}
 					</span>
 				</div>
 				<div className="flex items-center justify-between text-base">
@@ -86,7 +86,9 @@ export default function ActionBar() {
 						Taille estimée
 					</span>
 					<span className="font-medium text-(--foreground)">
-						{images.length === 0 ? '—' :formatFileSize(estimatedSize)}
+						{images.length === 0
+							? "—"
+							: formatFileSize(estimatedSize)}
 					</span>
 				</div>
 			</div>
@@ -94,7 +96,7 @@ export default function ActionBar() {
 				<Button
 					onClick={handleGeneratePDF}
 					variant="default"
-                    className="w-full"
+					className="w-full gap-2"
 					disabled={isGenerating || images.length === 0}>
 					<FileDown className="h-4 w-4" />
 					{isGenerating ? "Génération..." : "Générer le PDF"}
@@ -102,14 +104,17 @@ export default function ActionBar() {
 				<Button
 					onClick={handleShare}
 					variant="ghost"
-                    className="w-full"
+					className="w-full gap-2"
 					disabled={isSharing || images.length === 0}>
 					<Share2 className="h-4 w-4" />
 					{isSharing ? "Partage..." : "Partager le PDF"}
 				</Button>
 			</div>
 			<div className="mt-4 border-t border-(--border) pt-4">
-				<Button onClick={handleRemoveAll} className="w-full" variant="destructive">
+				<Button
+					onClick={handleRemoveAll}
+					variant="ghost"
+					className="w-full gap-2 text-(--destructive) hover:bg-(--destructive)/10 hover:text-(--destructive)">
 					<Trash2 className="h-4 w-4" />
 					Tout supprimer
 				</Button>

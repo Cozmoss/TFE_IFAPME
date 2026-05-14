@@ -10,7 +10,7 @@ export default function Button({children, variant = "default", className='', ...
 			"border border-(--border) bg-(--background) hover:bg-(--accent) hover:text-(--foreground)",
 		destructive:
 			"bg-(--destructive) text-(--destructive-foreground) hover:bg-(--destructive)/90",
-		ghost: "hover:bg-(--accent) hover:text-(--foreground)",
+		ghost: "hover:bg-(--accent)",
 		link: "text-(--primary) underline-offset-4 hover:underline",
 	};
   return (
