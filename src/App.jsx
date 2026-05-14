@@ -18,12 +18,12 @@ function App() {
                         exportez en PDF
                     </p>
                 </div>
-				<div className="grid grid-cols-6 gap-10">
-                    <div className="col-span-4">
+				<div className="grid grid-cols-1 gap-5 sm:gap-10 sm:grid-cols-6">
+                    <div className="sm:col-span-4">
                         <ImageDropZone />
                         <ImageList />
                     </div>
-                    <div className="col-span-2">
+                    <div className="sm:col-span-2">
                         <ActionBar />
                     </div>
                 </div>
