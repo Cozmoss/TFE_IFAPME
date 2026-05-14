@@ -55,7 +55,7 @@ export default function ImageDropZone() {
 			<p className="text-base text-(--muted-foreground)">
 				Glissez et déposez vos images ici
 			</p>
-			<div className="flex gap-2">
+			<div className="flex gap-2 mt-4">
 				<Button
 					onClick={() => inputRef.current.click()}
 					variant="outline">
