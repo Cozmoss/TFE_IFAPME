@@ -29,8 +29,11 @@ export const EN = {
 		generate: "Generate PDF",
 		generating: "Generating...",
 		share: "Share PDF",
-        sharing: "Sharing...",
+		sharing: "Sharing...",
 		removeAll: "Remove All",
+		generateSuccess: "PDF successfully generated",
+		generateFailed: "Failed to generate PDF",
+		shareFailed: "Failed to share PDF",
 	},
 	confirmDialog: {
 		deleteTitle: "Confirm Deletion",
@@ -41,7 +44,7 @@ export const EN = {
 	},
 	imageList: {
 		picture: "Image",
-        pictures: "Images",
+		pictures: "Images",
 	},
 	footer: {
 		text: "PixMerge · 100% offline · No data transmitted",

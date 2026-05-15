@@ -31,6 +31,9 @@ export const NL = {
 		share: "Deel PDF",
 		sharing: "Delen...",
 		removeAll: "Alles verwijderen",
+		generateSuccess: "PDF succesvol gegenereerd",
+		generateFailed: "PDF genereren mislukt",
+		shareFailed: "PDF delen mislukt",
 	},
 	confirmDialog: {
 		deleteTitle: "Bevestig verwijdering",
@@ -41,7 +44,7 @@ export const NL = {
 	},
 	imageList: {
 		picture: "Afbeelding",
-        pictures: "Afbeeldingen",
+		pictures: "Afbeeldingen",
 	},
 	footer: {
 		text: "PixMerge · 100% offline · Geen gegevens verzonden",
