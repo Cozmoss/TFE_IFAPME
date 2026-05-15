@@ -18,7 +18,7 @@ export default function CameraModal({isOpen, onClose}) {
         } else {
             stopCamera()
         }
-    }, [isOpen])
+    }, [isOpen, startCamera, stopCamera])
 
     async function handleCapture() {
         const file = await capturePhoto()
