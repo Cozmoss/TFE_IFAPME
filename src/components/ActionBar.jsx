@@ -5,6 +5,7 @@ import { downloadPDF } from '../utils/downloadPDF.js'
 import Button from './ui/button.jsx';
 import { FileDown, Share2, Trash2 } from 'lucide-react';
 import { formatFileSize } from '../utils/formatFileSize.js';
+import ConfirmDialog from './ui/ConfirmDialog.jsx';
 
 
 export default function ActionBar() {
@@ -14,6 +15,7 @@ export default function ActionBar() {
     const estimatedSize = images.reduce((total, image) => {
         return total + (image.compressed?.size ?? image.file.size)
     }, 0)
+    const [showConfirm, setShowConfirm] = useState(false)
 
     async function handleGeneratePDF() {
         if (images.length === 0) {
@@ -59,11 +61,17 @@ export default function ActionBar() {
     }
 
     function handleRemoveAll() {
-        if (window.confirm('Are you sure you want to delete all images?')) {
-            setImages([])
-        }
+        setShowConfirm(true)
     }
     return (
+		<>
+		<ConfirmDialog
+			isOpen={showConfirm}
+			title="Confirmer la suppression"
+			description="Êtes-vous sûr de vouloir supprimer toutes les images ? Cette action est irréversible."
+			onConfirm={() => { setImages([]); setShowConfirm(false) }}
+			onCancel={() => setShowConfirm(false)}
+		/>
 		<div className="rounded-lg border border-(--border) bg-(--surface) p-5">
 			<h3 className="text-base font-semibold text-(--foreground)">
 				Export
@@ -120,5 +128,6 @@ export default function ActionBar() {
 				</Button>
 			</div>
 		</div>
+		</>
 	);
 }
