@@ -4,6 +4,8 @@ import { useImages } from '../context/imageContext.jsx'
 import { nanoid } from 'nanoid'
 import imageCompression from 'browser-image-compression';
 import { COMPRESSION_OPTIONS } from '../utils/compressionOptions.js';
+import Button from './ui/button.jsx';
+import { Camera, CircleX } from "lucide-react";
 
 
 export default function CameraModal({isOpen, onClose}) {
@@ -27,15 +29,16 @@ export default function CameraModal({isOpen, onClose}) {
             compressed: compressedFile,
             preview: URL.createObjectURL(compressedFile)
         }])
-        onClose()
     }
 
     if (!isOpen) return null
     return (
-        <div>
+        <div className="relative">
             <video ref={videoRef} />
-            <button onClick={handleCapture}>Capture</button>
-            <button onClick={onClose}>Close</button>
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-4">
+                <Button onClick={handleCapture} variant='outline'><Camera className="h-4 w-4" />Capturer</Button>
+                <Button onClick={onClose} variant='outline'><CircleX className="h-4 w-4" />Fermer</Button>
+            </div>
         </div>
     )
 }
