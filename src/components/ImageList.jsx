@@ -4,8 +4,10 @@ import { SortableContext, arrayMove } from '@dnd-kit/sortable'
 import SortableImageItem from './SortableImageItem.jsx'
 import { useState } from 'react';
 import { LayoutList, LayoutGrid } from 'lucide-react';
+import { useI18n } from '../i18n/i18nContext.jsx';
 
 export default function ImageList() {
+    const { t } = useI18n()
   const { images, setImages } = useImages();
   const [viewMode, setViewMode] = useState('list')
 
@@ -31,7 +33,7 @@ export default function ImageList() {
 		<div className="mt-4">
 			<div className="flex items-center justify-between mb-3">
 				<p className="text-base text-(--muted-foreground)">
-					{images.length} image{images.length > 1 ? "s" : ""}
+					{images.length} {t('imageList.picture')}{images.length > 1 ? "s" : ""}
 				</p>
 				<div className="flex gap-1 bg-(--surface) border border-(--border) rounded-lg p-0.5">
 					<button

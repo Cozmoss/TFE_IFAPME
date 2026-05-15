@@ -6,10 +6,12 @@ import Button from './ui/button.jsx';
 import { FileDown, Share2, Trash2 } from 'lucide-react';
 import { formatFileSize } from '../utils/formatFileSize.js';
 import ConfirmDialog from './ui/ConfirmDialog.jsx';
+import { useI18n } from '../i18n/i18nContext.jsx';
 
 
 export default function ActionBar() {
     const { images, setImages } = useImages();
+    const { t } = useI18n()
     const [isGenerating, setIsGenerating] = useState(false)
     const [isSharing, setIsSharing] = useState(false)
     const estimatedSize = images.reduce((total, image) => {
@@ -19,7 +21,7 @@ export default function ActionBar() {
 
     async function handleGeneratePDF() {
         if (images.length === 0) {
-            alert('No images to generate PDF')
+            alert(t('actionBar.noImages'))
             return
         }
         try {
@@ -29,7 +31,7 @@ export default function ActionBar() {
             downloadPDF(pdfBytes, date)
         } catch (error) {
             console.error(error);
-            alert('Failed to generate PDF')
+            alert(t('actionBar.generateFailed'))
         } finally {
             setIsGenerating(false)
         }
@@ -37,7 +39,7 @@ export default function ActionBar() {
 
     async function handleShare() {
         if (images.length === 0) {
-            alert('No images to share')
+            alert(t('actionBar.noImagesToShare'))
             return
         }
         try {
@@ -52,7 +54,7 @@ export default function ActionBar() {
             }
         } catch (error) {
             console.error(error);
-            alert('Failed to share PDF')
+            alert(t('actionBar.shareFailed'))
         } finally {
             setIsSharing(false)
         }
@@ -67,31 +69,31 @@ export default function ActionBar() {
 		<>
 		<ConfirmDialog
 			isOpen={showConfirm}
-			title="Confirmer la suppression"
-			description="Êtes-vous sûr de vouloir supprimer toutes les images ? Cette action est irréversible."
+			title={t('confirmDialog.deleteTitle')}
+			description={t('confirmDialog.deleteDescription')}
 			onConfirm={() => { setImages([]); setShowConfirm(false) }}
 			onCancel={() => setShowConfirm(false)}
 		/>
 		<div className="rounded-lg border border-(--border) bg-(--surface) p-5">
 			<h3 className="text-base font-semibold text-(--foreground)">
-				Export
+				{t('actionBar.exportTitle')}
 			</h3>
 			<div className="mt-4 space-y-2.5">
 				<div className="flex items-center justify-between text-base">
-					<span className="text-(--muted-foreground)">Images</span>
+					<span className="text-(--muted-foreground)">{t('actionBar.images')}</span>
 					<span className="font-medium text-(--foreground)">
 						{images.length}
 					</span>
 				</div>
 				<div className="flex items-center justify-between text-base">
-					<span className="text-(--muted-foreground)">Page PDF</span>
+					<span className="text-(--muted-foreground)">{t('actionBar.pages')}</span>
 					<span className="font-medium text-(--foreground)">
 						{images.length === 0 ? "—" : images.length}
 					</span>
 				</div>
 				<div className="flex items-center justify-between text-base">
 					<span className="text-(--muted-foreground)">
-						Taille estimée
+						{t('actionBar.size')}
 					</span>
 					<span className="font-medium text-(--foreground)">
 						{images.length === 0
@@ -107,7 +109,7 @@ export default function ActionBar() {
 					className="w-full gap-2"
 					disabled={isGenerating || images.length === 0}>
 					<FileDown className="h-4 w-4" />
-					{isGenerating ? "Génération..." : "Générer le PDF"}
+					{isGenerating ? t('actionBar.generating') : t('actionBar.generate')}
 				</Button>
 				<Button
 					onClick={handleShare}
@@ -115,7 +117,7 @@ export default function ActionBar() {
 					className="w-full gap-2"
 					disabled={isSharing || images.length === 0}>
 					<Share2 className="h-4 w-4" />
-					{isSharing ? "Partage..." : "Partager le PDF"}
+					{isSharing ? t('actionBar.sharing') : t('actionBar.share')}
 				</Button>
 			</div>
 			<div className="mt-4 border-t border-(--border) pt-4">
@@ -124,7 +126,7 @@ export default function ActionBar() {
 					variant="ghost"
 					className="w-full gap-2 text-(--destructive) hover:bg-(--destructive)/10 hover:text-(--destructive)">
 					<Trash2 className="h-4 w-4" />
-					Tout supprimer
+					{t('actionBar.removeAll')}
 				</Button>
 			</div>
 		</div>

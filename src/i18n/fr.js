@@ -17,11 +17,11 @@ export const FR = {
 		browse: "Parcourir",
 		capture: "Capturer",
 	},
-	cameramodal: {
+	cameraModal: {
 		capture: "Capturer",
 		close: "Fermer",
 	},
-	actionbar: {
+	actionBar: {
 		exportTitle: "Export",
 		images: "Images",
 		pages: "Page PDF",

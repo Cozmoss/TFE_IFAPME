@@ -6,9 +6,11 @@ import imageCompression from 'browser-image-compression';
 import { COMPRESSION_OPTIONS } from '../utils/compressionOptions.js';
 import Button from './ui/button.jsx';
 import { Camera, CircleX } from "lucide-react";
+import { useI18n } from '../i18n/i18nContext.jsx';
 
 
 export default function CameraModal({isOpen, onClose}) {
+    const { t } = useI18n()
     const { videoRef, startCamera, stopCamera, capturePhoto } = useCamera()
     const { setImages } = useImages()
 
@@ -36,8 +38,8 @@ export default function CameraModal({isOpen, onClose}) {
         <div className="relative">
             <video ref={videoRef} />
             <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-4">
-                <Button onClick={handleCapture} variant='outline'><Camera className="h-4 w-4" />Capturer</Button>
-                <Button onClick={onClose} variant='outline'><CircleX className="h-4 w-4" />Fermer</Button>
+                <Button onClick={handleCapture} variant='outline'><Camera className="h-4 w-4" />{t('cameraModal.capture')}</Button>
+                <Button onClick={onClose} variant='outline'><CircleX className="h-4 w-4" />{t('cameraModal.close')}</Button>
             </div>
         </div>
     )

@@ -17,11 +17,11 @@ export const EN = {
 		browse: "Browse",
 		capture: "Capture",
 	},
-	cameramodal: {
+	cameraModal: {
 		capture: "Capture",
 		close: "Close",
 	},
-	actionbar: {
+	actionBar: {
 		exportTitle: "Export",
 		images: "Images",
 		pages: "PDF Pages",

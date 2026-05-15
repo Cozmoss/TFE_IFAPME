@@ -17,11 +17,11 @@ export const NL = {
 		browse: "Bladeren",
 		capture: "Opnemen",
 	},
-	cameramodal: {
+	cameraModal: {
 		capture: "Opnemen",
 		close: "Sluiten",
 	},
-	actionbar: {
+	actionBar: {
 		exportTitle: "Exporteren",
 		images: "Afbeeldingen",
 		pages: "PDF-pagina's",

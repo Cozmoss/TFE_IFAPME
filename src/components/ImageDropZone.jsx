@@ -6,8 +6,10 @@ import imageCompression from "browser-image-compression";
 import { COMPRESSION_OPTIONS } from "../utils/compressionOptions.js";
 import { Upload, Camera, ImagePlus } from "lucide-react";
 import Button from "./ui/button.jsx";
+import { useI18n } from "../i18n/i18nContext.jsx";
 
 export default function ImageDropZone() {
+    const { t } = useI18n()
 	const { setImages } = useImages();
 	const [isCameraOpen, setIsCameraOpen] = useState(false);
 	const [isDragging, setIsDragging] = useState(false);
@@ -56,7 +58,7 @@ export default function ImageDropZone() {
 				<ImagePlus className="h-7 w-7 text-(--primary)" />
 			</div>
 			<p className="text-base text-(--muted-foreground)">
-				Glissez et déposez vos images ici
+				{t('dropzone.title')}
 			</p>
 			<div className="flex gap-2 mt-4">
 				{!isCameraOpen && (
@@ -64,7 +66,7 @@ export default function ImageDropZone() {
 						<Button
 							onClick={() => inputRef.current.click()}
 							variant="outline">
-							<Upload className="h-4 w-4" /> Parcourir
+							<Upload className="h-4 w-4" /> {t('dropzone.browse')}
 						</Button>
 						<input
 							ref={inputRef}
@@ -79,7 +81,7 @@ export default function ImageDropZone() {
 						<Button
 							onClick={() => setIsCameraOpen(true)}
 							variant="outline">
-							<Camera className="h-4 w-4" /> Capturer
+							<Camera className="h-4 w-4" /> {t('dropzone.capture')}
 						</Button>
 					</>
 				)}
