@@ -7,7 +7,10 @@ const i18nContext = createContext()
 
 
 export default function I18nProvider({ children }) {
-  const [language, setLanguage] = useState('fr')
+    const SUPPORTED = ['fr', 'en', 'nl']
+    const browserLang = navigator.language.slice(0, 2)
+    const defaultLang = SUPPORTED.includes(browserLang) ? browserLang : 'fr'
+  const [language, setLanguage] = useState(defaultLang)
     const translations = {fr: FR, nl: NL, en: EN}
 
     function t(path) {
