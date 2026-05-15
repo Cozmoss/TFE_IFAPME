@@ -12,7 +12,7 @@ function App() {
   return (
 		<>
 			<Header />
-			<main className="max-w-6xl mx-auto px-4 py-8 sm:px-6">
+			<main className="max-w-6xl w-full mx-auto px-4 py-8 sm:px-6">
 				<div className='mb-6'>
                     <h1 className="text-2xl font-semibold tracking-tight text-(--foreground)">
                         {t('main.title')}
@@ -21,7 +21,7 @@ function App() {
                         {t('main.description')}
                     </p>
                 </div>
-                <div className="flex gap-2 mb-4">
+                <div className="flex flex-wrap gap-2 mb-4">
                     <Badges><ShieldCheck className="mr-1 h-4 w-4" />{t('main.badges.ram')}</Badges>
                     <Badges><Lock className="mr-1 h-4 w-4" />{t('main.badges.rgpd')}</Badges>
                     <Badges><Eye className="mr-1 h-4 w-4" />{t('main.badges.noTracking')}</Badges>
