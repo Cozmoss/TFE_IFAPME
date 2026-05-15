@@ -3,6 +3,8 @@ import ImageDropZone from './components/ImageDropZone.jsx'
 import ImageList from './components/ImageList.jsx'
 import ActionBar from './components/ActionBar.jsx'
 import Footer from './components/Footer.jsx'
+import Badges from './components/ui/Badges.jsx'
+import { ShieldCheck, Lock, Eye } from "lucide-react";
 
 function App() {
   return (
@@ -17,6 +19,11 @@ function App() {
                         Importez ou capturez vos images, réorganisez-les, puis
                         exportez en PDF
                     </p>
+                </div>
+                <div className="flex gap-2 mb-4">
+                    <Badges><ShieldCheck className="mr-1 h-4 w-4" />Données en RAM uniquement</Badges>
+                    <Badges><Lock className="mr-1 h-4 w-4" />Conforme RGPD</Badges>
+                    <Badges><Eye className="mr-1 h-4 w-4" />Aucun tracking</Badges>
                 </div>
 				<div className="grid grid-cols-1 gap-5 sm:gap-10 sm:grid-cols-6">
                     <div className="sm:col-span-4">
