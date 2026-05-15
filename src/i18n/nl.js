@@ -41,6 +41,7 @@ export const NL = {
 	},
 	imageList: {
 		picture: "Afbeelding",
+        pictures: "Afbeeldingen",
 	},
 	footer: {
 		text: "PixMerge · 100% offline · Geen gegevens verzonden",

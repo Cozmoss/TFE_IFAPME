@@ -41,6 +41,7 @@ export const EN = {
 	},
 	imageList: {
 		picture: "Image",
+        pictures: "Images",
 	},
 	footer: {
 		text: "PixMerge · 100% offline · No data transmitted",

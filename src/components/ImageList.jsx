@@ -33,7 +33,7 @@ export default function ImageList() {
 		<div className="mt-4">
 			<div className="flex items-center justify-between mb-3">
 				<p className="text-base text-(--muted-foreground)">
-					{images.length} {t('imageList.picture')}{images.length > 1 ? "s" : ""}
+					{images.length} {images.length > 1 ? t("imageList.pictures") : t("imageList.picture")}
 				</p>
 				<div className="flex gap-1 bg-(--surface) border border-(--border) rounded-lg p-0.5">
 					<button

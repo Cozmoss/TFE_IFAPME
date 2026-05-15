@@ -41,6 +41,7 @@ export const FR = {
 	},
 	imageList: {
 		picture: "Image",
+        pictures: "Images",
 	},
 	footer: {
 		text: "PixMerge · 100% hors-ligne · Aucune donnée transmise",
