@@ -6,7 +6,7 @@ export default function Footer() {
   return (
 		<footer className="border-t border-(--border) mt-12">
 			<div className="max-w-6xl w-full mx-auto px-4 pt-6 text-center text-sm text-(--muted-foreground)">
-				{t('footer.text')}
+				{t("footer.text")} · <a href="https://github.com/Cozmoss/TFE_IFAPME" target="_blank">Github</a>
 			</div>
 		</footer>
   );
