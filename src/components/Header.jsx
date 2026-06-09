@@ -1,6 +1,8 @@
 import React from "react";
 import { Wifi } from "lucide-react";
 import { useI18n } from "../i18n/i18nContext";
+import logo from "../assets/192x192.png";
+import logoDark from "../assets/192x192_dark.png";
 
 const LOCALES = ["fr", "en", "nl"];
 
@@ -9,7 +11,13 @@ export default function Header() {
 	return (
 		<header className="bg-(--surface) border-b border-(--border)">
 			<nav className="flex justify-between items-center py-4 max-w-6xl w-full mx-auto px-4">
-				<div className="text-(--primary) font-semibold">PixMerge</div>
+				<div className="flex items-center gap-2 text-(--primary) font-semibold">
+                    <picture>
+                        <source srcSet={logoDark} media="(prefers-color-scheme: dark)" />
+                        <img src={logo} alt="PixMerge" className="h-20 w-20 object-contain rounded-lg" />
+                    </picture>
+                    PixMerge
+                </div>
 				<div className="flex items-center gap-3">
 					<div className="flex items-center gap-2 text-sm text-(--muted-foreground)">
 						<Wifi className="h-4 w-4" /> {t("header.slogan")}

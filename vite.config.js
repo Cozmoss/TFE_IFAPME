@@ -23,12 +23,30 @@ export default defineConfig({
                 {
                     src: '/icons/icon-192x192.png',
                     sizes: '192x192',
-                    type: 'image/png'
+                    type: 'image/png',
+                    purpose: 'any',
+                    media: '(prefers-color-scheme: light)'
+                },
+                {
+                    src: '/icons/icon-192x192-dark.png',
+                    sizes: '192x192',
+                    type: 'image/png',
+                    purpose: 'any',
+                    media: '(prefers-color-scheme: dark)'
                 },
                 {
                     src: '/icons/icon-512x512.png',
                     sizes: '512x512',
-                    type: 'image/png'
+                    type: 'image/png',
+                    purpose: 'any',
+                    media: '(prefers-color-scheme: light)'
+                },
+                {
+                    src: '/icons/icon-512x512-dark.png',
+                    sizes: '512x512',
+                    type: 'image/png',
+                    purpose: 'any',
+                    media: '(prefers-color-scheme: dark)'
                 }
             ]
         }

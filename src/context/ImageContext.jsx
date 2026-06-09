@@ -2,7 +2,6 @@ import { createContext, useState, useContext } from 'react'
 
 const ImageContext = createContext()
 
-
 export default function ImageProvider({ children }) {
   const [images, setImages] = useState([])
 
