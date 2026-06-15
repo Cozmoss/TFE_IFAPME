@@ -12,10 +12,10 @@ export default function Header() {
 		<header className="bg-(--surface) border-b border-(--border)">
 			<nav className="flex justify-between items-center py-4 max-w-6xl w-full mx-auto px-4">
 				<div className="flex items-center gap-2 text-(--primary) font-semibold">
-                    <picture>
+                    {/* <picture>
                         <source srcSet={logoDark} media="(prefers-color-scheme: dark)" />
                         <img src={logo} alt="PixMerge" className="h-20 w-20 object-contain rounded-lg" />
-                    </picture>
+                    </picture> */}
                     PixMerge
                 </div>
 				<div className="flex items-center gap-3">

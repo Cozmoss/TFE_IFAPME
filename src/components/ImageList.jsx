@@ -1,5 +1,5 @@
 import { useImages } from '../context/imageContext.jsx'
-import { DndContext, closestCenter } from '@dnd-kit/core'
+import { DndContext, closestCenter, PointerSensor, TouchSensor, useSensor, useSensors } from '@dnd-kit/core'
 import { SortableContext, arrayMove } from '@dnd-kit/sortable'
 import SortableImageItem from './SortableImageItem.jsx'
 import { useState } from 'react';
@@ -10,6 +10,15 @@ export default function ImageList() {
     const { t } = useI18n()
   const { images, setImages } = useImages();
   const [viewMode, setViewMode] = useState('list')
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(TouchSensor, {
+      activationConstraint: {
+        delay: 250,
+        tolerance: 5,
+      },
+    })
+  )
 
  function handleRemoveImage(id) {
     setImages(prevImages => prevImages.filter(image => image.id !== id))
@@ -49,6 +58,7 @@ export default function ImageList() {
 				</div>
 			</div>
 			<DndContext
+				sensors={sensors}
 				collisionDetection={closestCenter}
 				onDragEnd={handleDragEnd}>
 				<SortableContext items={images.map((image) => image.id)}>

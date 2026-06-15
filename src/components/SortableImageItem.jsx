@@ -38,7 +38,7 @@ export default function SortableImageItem({
 
 				<div
 					{...listeners}
-					style={{ cursor: "grab" }}
+					style={{ cursor: "grab", touchAction: "none" }}
 					className="absolute right-2 top-2 z-10 flex h-7 w-7 items-center justify-center rounded bg-(--foreground)/60 text-(--background) backdrop-blur-sm transition-colors hover:bg-(--primary)">
 					<GripVertical className="w-4 h-4" />
 				</div>
@@ -71,7 +71,7 @@ export default function SortableImageItem({
 			<div className="bg-(--muted) text-(--muted-foreground) p-1 rounded-lg hover:bg-(--primary)/10 hover:text-(--primary) transition-colors">
 				<GripVertical
 					{...listeners}
-					style={{ cursor: "grab" }}
+					style={{ cursor: "grab", touchAction: "none" }}
 					className="w-4 h-4"
 				/>
 			</div>

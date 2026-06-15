@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useImages } from "../context/imageContext.jsx";
 import { generatePDF } from "../utils/generatePDF.js";
 import { downloadPDF } from "../utils/downloadPDF.js";
@@ -14,6 +14,19 @@ export default function ActionBar() {
 	const { t } = useI18n();
 	const [isGenerating, setIsGenerating] = useState(false);
 	const [isSharing, setIsSharing] = useState(false);
+	const [isExportBoxVisible, setIsExportBoxVisible] = useState(true);
+	const exportBoxRef = useRef(null);
+
+	useEffect(() => {
+		const el = exportBoxRef.current;
+		if (!el) return;
+		const observer = new IntersectionObserver(
+			([entry]) => setIsExportBoxVisible(entry.isIntersecting),
+			{ threshold: 0.3 }
+		);
+		observer.observe(el);
+		return () => observer.disconnect();
+	}, []);
 	const estimatedSize = images.reduce((total, image) => {
 		return total + (image.compressed?.size ?? image.file.size);
 	}, 0);
@@ -70,7 +83,7 @@ export default function ActionBar() {
 				}}
 				onCancel={() => setShowConfirm(false)}
 			/>
-			<div className="rounded-lg border border-(--border) bg-(--surface) p-5">
+			<div ref={exportBoxRef} className="rounded-lg border border-(--border) bg-(--surface) p-5">
 				<h3 className="text-base font-semibold text-(--foreground)">
 					{t("actionBar.exportTitle")}
 				</h3>
@@ -134,6 +147,30 @@ export default function ActionBar() {
 					</Button>
 				</div>
 			</div>
+			{!isExportBoxVisible && images.length > 0 && (
+				<div className="fixed bottom-0 left-0 right-0 z-40 flex gap-2 border-t border-(--border) bg-(--surface) p-3 shadow-lg sm:hidden" style={{ paddingBottom: "calc(0.75rem + env(safe-area-inset-bottom))" }}>
+					<Button
+						onClick={handleGeneratePDF}
+						variant="default"
+						className="flex-1 gap-2"
+						disabled={isGenerating || images.length === 0}>
+						<FileDown className="h-4 w-4" />
+						{isGenerating
+							? t("actionBar.generating")
+							: t("actionBar.generate")}
+					</Button>
+					<Button
+						onClick={handleShare}
+						variant="secondary"
+						className="flex-1 gap-2"
+						disabled={isSharing || images.length === 0}>
+						<Share2 className="h-4 w-4" />
+						{isSharing
+							? t("actionBar.sharing")
+							: t("actionBar.share")}
+					</Button>
+				</div>
+			)}
 		</>
 	);
 }

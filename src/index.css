@@ -31,6 +31,19 @@ body {
 	}
 }
 
+@keyframes camera-flash {
+	from {
+		opacity: 0.8;
+	}
+	to {
+		opacity: 0;
+	}
+}
+
+.animate-camera-flash {
+	animation: camera-flash 400ms ease-out forwards;
+}
+
 [data-sonner-toaster] {
 	--normal-bg: var(--card);
 	--normal-border: var(--border);
